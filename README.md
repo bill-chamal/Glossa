@@ -1,7 +1,7 @@
 # GLOSSA
 
 Version 2020 1.1.0.0
-<p>Glossa is a code editor for programming Γλώσσα in that is taught in the 3rd grade of senior high school.</p>
+<p>Glossa is a code editor for programming Γλώσσα in that is taught in the 3rd grade of senior high school in Greece.</p>
 There is already a full-featured GUI application. It is made mainly for educational purposes. Note that does not have any compiler.
 <p><h2>Made simple to use and powerful.</h2> </p>
 
