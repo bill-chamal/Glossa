@@ -32,7 +32,7 @@ There is already a full-featured GUI application. It is made mainly for educatio
 - <p>Name of the project: "Glossa"</p>
 - <p>Current version: 2020 v1.3.2.3 (3/12/2020 3:29:49 PM)</p>
 - <p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=21">Net.Framework 3.5</a></p>
-- <p>Size of the project: 1.97 MB (2,071,040 bytes) </p>
+- <p>Size of the project: 7.53 MB (7,906,086 bytes) </p>
 
 <p><h2>license:</h2></p>
 
