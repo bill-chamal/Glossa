@@ -1,6 +1,6 @@
 # GLOSSA
 
-Version 2020 v1.3.2.3 (3/12/2020 3:29:49 PM)
+Version 2020 v1.3.2.4 (3/29/2020 12:10:19 AM)
 <p>Glossa is a code editor for programming Γλώσσα in that is taught in the 3rd grade of senior high school in Greece.</p>
 There is already a full-featured GUI application. It is made mainly for educational purposes. Note that does not have any compiler.
 <p><h2>Made simple to use and powerful.</h2> </p>
@@ -30,7 +30,7 @@ There is already a full-featured GUI application. It is made mainly for educatio
 <p> <h2> Info: </h2> </p>
 
 - <p>Name of the project: "Glossa"</p>
-- <p>Current version: 2020 v1.3.2.3 (3/12/2020 3:29:49 PM)</p>
+- <p>Current version: 2020 v1.3.2.4 (3/29/2020 12:10:19 AM)</p>
 - <p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=21">Net.Framework 3.5</a></p>
 - <p>Size of the project: 7.53 MB (7,906,086 bytes) </p>
 
