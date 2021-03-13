@@ -12,9 +12,9 @@ There is already a full-featured GUI application. It is made mainly for educatio
 ![](Glossa-jpg/glo_2.jpg)
 
 
-<p> <h2> Highlights the same words </h2> </p>
+<p> <h2> Syntax Highlighting </h2> </p>
 
-![](Glossa-jpg/glo_4.jpg)
+![](Glossa-jpg/glo_7.jpg)
 
 
 <p> <h2> Column selection mode </h2> </p>
