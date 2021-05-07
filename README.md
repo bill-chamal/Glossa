@@ -26,6 +26,9 @@ It is already a full-featured GUI application. It is made mainly for educational
 ![](Glossa-jpg/glo_6.jpg)
 
 
+<p> <h2> Download (not install): </h2> </p>
+
+- <p>Download ready to run from <a href="https://github.com/bill-chamal/Glossa/releases/download/2021/GLOSSA_no_install.rar">HERE "GLOSSA_no_install"</a><em>.rar</em></p>
 
 <p> <h2> Info: </h2> </p>
 
