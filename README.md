@@ -2,7 +2,7 @@
 
 Version 2021 v1.3.2.5 (13/3/2021)
 <p>Glossa is a code editor for programming Γλώσσα in that is taught in the 3rd grade of senior high school in Greece.</p>
-There is already a full-featured GUI application. It is made mainly for educational purposes. Note that does not have any compiler.
+It is already a full-featured GUI application. It is made mainly for educational purposes. Note that does <strong> not have any compiler </strong>.
 <p><h2>Made simple to use and powerful.</h2> </p>
 
 ![](Glossa-jpg/glo_1.jpg)
@@ -31,6 +31,7 @@ There is already a full-featured GUI application. It is made mainly for educatio
 
 - <p>Name of the project: "Glossa"</p>
 - <p>Current version: 2021 v1.3.2.5 (13/3/2021)</p>
+- <p>It is a code editor for programming only the language "ΓΛΩΣΣΑ".</p>
 - <p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=21">Net.Framework 3.5</a></p>
 - <p>Size of the project: 4.61 MB (zip) </p>
 
