@@ -5,25 +5,25 @@ Version 2021 v1.3.2.5 (13/3/2021)
 It is already a full-featured GUI application. It is made mainly for educational purposes. Note that does <strong> not have any compiler </strong>.
 <p><h2>Made simple to use and powerful.</h2> </p>
 
-![](Glossa-jpg/glo_1.jpg)
+![](img/glo_1.jpg)
 <br>
 <p> <h2> Autocomplete menu </h2> </p>
 
-![](Glossa-jpg/glo_2.jpg)
+![](img/glo_2.jpg)
 
 
 <p> <h2> Syntax Highlighting </h2> </p>
 
-![](Glossa-jpg/glo_7.jpg)
+![](img/glo_7.jpg)
 
 
 <p> <h2> Column selection mode </h2> </p>
 
-![](Glossa-jpg/glo_5.jpg)
+![](img/glo_5.jpg)
 
 <p> <h2> Very stable at big files like 50mb </h2> </p>
 
-![](Glossa-jpg/glo_6.jpg)
+![](img/glo_6.jpg)
 
 
 <p> <h2> Download (not install): </h2> </p>
