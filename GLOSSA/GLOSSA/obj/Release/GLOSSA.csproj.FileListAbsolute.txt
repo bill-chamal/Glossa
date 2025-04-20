@@ -1,0 +1,81 @@
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.exe.config
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.exe.manifest
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.application
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.exe
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.pdb
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\el\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\en\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\dje-NE\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\el-GR\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\FastColoredTextBox.dll
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\FastColoredTextBox.xml
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.csproj.SuggestedBindingRedirects.cache
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.About_Form.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.DialogSave.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Help_Form.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.LoadingF.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Options_Form.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Properties.Resources.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.SplashScreen.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.About_Form.el.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.About_Form.en.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.dje-NE.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.el-GR.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.el.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.en.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Options_Form.el.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Options_Form.en.resources
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.csproj.GenerateResource.cache
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.csproj.CoreCompileInputs.cache
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\el\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\en\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\dje-NE\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\el-GR\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.TrustInfo.xml
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.exe.manifest
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.application
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.csproj.CopyComplete
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.exe
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.pdb
+C:\Users\basil\Documents\Visual Studio Net App C#\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.csproj.AssemblyReference.cache
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.exe.config
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.exe.manifest
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.application
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.exe
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\GLOSSA.pdb
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\el\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\en\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\dje-NE\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\el-GR\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\FastColoredTextBox.dll
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\bin\Release\FastColoredTextBox.xml
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.csproj.AssemblyReference.cache
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.About_Form.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.DialogSave.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Help_Form.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.LoadingF.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Options_Form.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Properties.Resources.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.SplashScreen.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.About_Form.el.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.About_Form.en.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.dje-NE.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.el-GR.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.el.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Form1.en.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Options_Form.el.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.Options_Form.en.resources
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.csproj.GenerateResource.cache
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.csproj.CoreCompileInputs.cache
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\el\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\en\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\dje-NE\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\el-GR\GLOSSA.resources.dll
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.TrustInfo.xml
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.exe.manifest
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.application
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.csproj.Up2Date
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.exe
+C:\Users\basil\Documents\Visual_Rocket_App\ΓΛΩΣΣΑ_Projects\GLOSSA\GLOSSA\obj\Release\GLOSSA.pdb

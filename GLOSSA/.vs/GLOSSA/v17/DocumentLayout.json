@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\basil\\Documents\\Visual_Rocket_App\\\u0393\u039B\u03A9\u03A3\u03A3\u0391_Projects\\GLOSSA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6425FA81-8B25-4BED-806B-913BF252EDB0}|GLOSSA\\GLOSSA.csproj|C:\\Users\\basil\\Documents\\Visual_Rocket_App\\\u0393\u039B\u03A9\u03A3\u03A3\u0391_Projects\\GLOSSA\\glossa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6425FA81-8B25-4BED-806B-913BF252EDB0}|GLOSSA\\GLOSSA.csproj|solutionrelative:glossa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6425FA81-8B25-4BED-806B-913BF252EDB0}|GLOSSA\\GLOSSA.csproj|c:\\users\\basil\\documents\\visual_rocket_app\\\u03B3\u03BB\u03C9\u03C3\u03C3\u03B1_projects\\glossa\\glossa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6425FA81-8B25-4BED-806B-913BF252EDB0}|GLOSSA\\GLOSSA.csproj|solutionrelative:glossa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\basil\\Documents\\Visual_Rocket_App\\\u0393\u039B\u03A9\u03A3\u03A3\u0391_Projects\\GLOSSA\\GLOSSA\\Form1.cs",
+              "RelativeDocumentMoniker": "GLOSSA\\Form1.cs",
+              "ToolTip": "C:\\Users\\basil\\Documents\\Visual_Rocket_App\\\u0393\u039B\u03A9\u03A3\u03A3\u0391_Projects\\GLOSSA\\GLOSSA\\Form1.cs",
+              "RelativeToolTip": "GLOSSA\\Form1.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwDsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2022-12-19T11:14:45.53Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\basil\\Documents\\Visual_Rocket_App\\\u0393\u039B\u03A9\u03A3\u03A3\u0391_Projects\\GLOSSA\\GLOSSA\\Form1.cs",
+              "RelativeDocumentMoniker": "GLOSSA\\Form1.cs",
+              "ToolTip": "C:\\Users\\basil\\Documents\\Visual_Rocket_App\\\u0393\u039B\u03A9\u03A3\u03A3\u0391_Projects\\GLOSSA\\GLOSSA\\Form1.cs [Design]",
+              "RelativeToolTip": "GLOSSA\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2022-12-19T11:14:45.525Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
