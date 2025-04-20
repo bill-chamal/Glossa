@@ -2,7 +2,12 @@
 
 Version 2021 v1.3.2.5 (13/3/2021)
 <p>Glossa is a code editor for programming Γλώσσα in that is taught in the 3rd grade of senior high school in Greece.</p>
+
+The "Glossa" application is a Code Editor for the pseudocode programming language taught in high school and tested in the national exams at the end of each school year. This program surpasses existing software in better handling the writing of pseudocode. It includes tools like auto-completion, code highlighting, and several other characteristics that improve learning and facilitate the introduction to IDE environments. The development of this program began around 2018-2019 (when I was in my first year of high school), as I noticed a significant lack of programming editors for this specific pseudocode language, and I seized the opportunity to create a new, unique program with its own features.
+
 It is already a full-featured GUI application. It is made mainly for educational purposes. Note that does <strong> not have any compiler </strong>.
+
+
 <p><h2>Made simple to use and powerful.</h2> </p>
 
 ![](img/glo_1.jpg)
