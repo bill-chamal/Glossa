@@ -1,0 +1,22 @@
+{
+  "name": "Glossa IDE — Γλώσσα WebAssembly",
+  "short_name": "Glossa IDE",
+  "description": "Modern WebAssembly educational programming environment for ΓΛΩΣΣΑ with offline execution and Monaco Editor",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#1e1e1e",
+  "theme_color": "#007acc",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+@namespace GlossaWeb.Components
+@using GlossaWeb.Models
+@inject IJSRuntime JS
+@inject ILocalizationService Loc
+
+<section class="ide-panel-area" style="height: @(IsVisible ? $"{HeightPx}px" : "34px");">
+    <!-- Panel Header with Tabs & Controls -->
+    <div class="panel-header">
+        <div class="panel-tabs">
+            <button class="panel-tab-btn @(ActiveTab == BottomPanelTab.Terminal ? "active" : "")"
+                    @onclick="@(() => OnTabChanged.InvokeAsync(BottomPanelTab.Terminal))">
+                <i class="bi bi-terminal"></i>
+                <span>@Loc["Terminal"]</span>
+            </button>
+
+            <button class="panel-tab-btn @(ActiveTab == BottomPanelTab.Problems ? "active" : "")"
+                    @onclick="@(() => OnTabChanged.InvokeAsync(BottomPanelTab.Problems))">
+                <i class="bi bi-exclamation-triangle"></i>
+                <span>@Loc["Problems"]</span>
+                @if (Diagnostics.Count > 0)
+                {
+                    <span class="panel-badge badge-error">@Diagnostics.Count</span>
+                }
+            </button>
+
+            <button class="panel-tab-btn @(ActiveTab == BottomPanelTab.BuildOutput ? "active" : "")"
+                    @onclick="@(() => OnTabChanged.InvokeAsync(BottomPanelTab.BuildOutput))">
+                <i class="bi bi-card-checklist"></i>
+                <span>@Loc["BuildOutput"]</span>
+            </button>
+        </div>
+
+        <div class="panel-actions">
+            <button class="panel-action-btn" @onclick="OnClear" title="@Loc["ClearLogs"]">
+                <i class="bi bi-trash"></i>
+            </button>
+            <button class="panel-action-btn" @onclick="OnToggleVisibility" title="@(IsVisible ? "Collapse Panel" : "Expand Panel")">
+                <i class="bi @(IsVisible ? "bi-chevron-down" : "bi-chevron-up")"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Panel Content Area -->
+    @if (IsVisible)
+    {
+        <div class="panel-body" @ref="panelBodyRef">
+            @if (ActiveTab == BottomPanelTab.Terminal)
+            {
+                @if (TerminalLines.Count == 0 && !IsWaitingForInput)
+                {
+                    <div class="term-line term-system">
+                        @(Loc.CurrentLanguage == AppLanguage.Greek 
+                            ? "Πατήστε \"Εκτέλεση\" (F5) για μεταγλώττιση και εκτέλεση του προγράμματος." 
+                            : "Press \"Run\" (F5) to compile and execute the program.")
+                    </div>
+                }
+
+                @foreach (var line in TerminalLines)
+                {
+                    var cssClass = line.Type switch
+                    {
+                        TerminalLineType.Error => "term-line term-error",
+                        TerminalLineType.Input => "term-line term-input",
+                        TerminalLineType.System => "term-line term-system",
+                        TerminalLineType.Info => "term-line term-info",
+                        _ => "term-line term-output"
+                    };
+                    <div class="@cssClass">@line.Text</div>
+                }
+
+                @if (IsWaitingForInput)
+                {
+                    <div class="terminal-input-row">
+                        <span class="terminal-prompt-glyph">?&gt;</span>
+                        <input @ref="inputFieldRef"
+                               type="text"
+                               class="terminal-input-field"
+                               placeholder="@Loc["InputPlaceholder"]"
+                               @bind="currentInputText"
+                               @bind:event="oninput"
+                               @onkeydown="HandleInputKeyDown" />
+                    </div>
+                }
+            }
+            else if (ActiveTab == BottomPanelTab.Problems)
+            {
+                @if (Diagnostics.Count == 0)
+                {
+                    <div class="term-line term-system">
+                        <i class="bi bi-check-circle" style="color:var(--text-success); margin-right:6px;"></i>
+                        @Loc["NoProblems"]
+                    </div>
+                }
+                else
+                {
+                    <table class="problems-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 30px;"></th>
+                                <th>@(Loc.CurrentLanguage == AppLanguage.Greek ? "Μήνυμα" : "Message")</th>
+                                <th style="width: 140px;">@(Loc.CurrentLanguage == AppLanguage.Greek ? "Θέση" : "Location")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var diag in Diagnostics)
+                            {
+                                <tr @onclick="@(() => OnProblemSelected.InvokeAsync(diag))">
+                                    <td>
+                                        @if (diag.Severity == "Warning")
+                                        {
+                                            <i class="bi bi-exclamation-triangle-fill problems-icon-warning"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="bi bi-exclamation-circle-fill problems-icon-error"></i>
+                                        }
+                                    </td>
+                                    <td>@diag.Message</td>
+                                    <td>@Loc.Format("StatusLineCol", diag.Line, diag.Column)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+            else if (ActiveTab == BottomPanelTab.BuildOutput)
+            {
+                @if (BuildLogs.Count == 0)
+                {
+                    <div class="term-line term-system">@(Loc.CurrentLanguage == AppLanguage.Greek ? "Δεν υπάρχουν καταγραφές μεταγλώττισης." : "No build logs available.")</div>
+                }
+                @foreach (var log in BuildLogs)
+                {
+                    <div class="term-line term-output">@log</div>
+                }
+            }
+        </div>
+    }
+</section>
+
+@code {
+    [Parameter] public bool IsVisible { get; set; } = true;
+    [Parameter] public int HeightPx { get; set; } = 240;
+    [Parameter] public BottomPanelTab ActiveTab { get; set; } = BottomPanelTab.Terminal;
+    [Parameter] public EventCallback<BottomPanelTab> OnTabChanged { get; set; }
+    [Parameter] public EventCallback OnToggleVisibility { get; set; }
+    [Parameter] public EventCallback OnClear { get; set; }
+    [Parameter] public EventCallback<DiagnosticEntry> OnProblemSelected { get; set; }
+
+    [Parameter] public List<TerminalLine> TerminalLines { get; set; } = new();
+    [Parameter] public List<DiagnosticEntry> Diagnostics { get; set; } = new();
+    [Parameter] public List<string> BuildLogs { get; set; } = new();
+    [Parameter] public bool IsWaitingForInput { get; set; }
+    [Parameter] public EventCallback<string> OnInputSubmitted { get; set; }
+
+    private ElementReference panelBodyRef;
+    private ElementReference inputFieldRef;
+    private string currentInputText = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (IsVisible && ActiveTab == BottomPanelTab.Terminal)
+        {
+            try
+            {
+                await JS.InvokeVoidAsync("eval", "arguments[0] && (arguments[0].scrollTop = arguments[0].scrollHeight)", panelBodyRef);
+            }
+            catch { }
+
+            if (IsWaitingForInput)
+            {
+                try
+                {
+                    await inputFieldRef.FocusAsync();
+                }
+                catch { }
+            }
+        }
+    }
+
+    private async Task HandleInputKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            var text = currentInputText;
+            currentInputText = "";
+            await OnInputSubmitted.InvokeAsync(text);
+        }
+    }
+}

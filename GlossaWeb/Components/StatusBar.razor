@@ -1,0 +1,84 @@
+@namespace GlossaWeb.Components
+@using GlossaWeb.Models
+@inject ILocalizationService Loc
+
+<footer class="ide-statusbar @GetStatusClass()">
+    <div class="statusbar-left">
+        <div class="statusbar-item" title="@(Loc.CurrentLanguage == AppLanguage.Greek ? "Κατάσταση Εκτέλεσης" : "Execution Status")">
+            @switch (State)
+            {
+                case ExecutionState.Running:
+                    <i class="bi bi-play-circle-fill"></i>
+                    <span>@Loc["StateRunning"]</span>
+                    break;
+                case ExecutionState.Compiling:
+                    <i class="bi bi-gear-wide-connected"></i>
+                    <span>@Loc["StateCompiling"]</span>
+                    break;
+                case ExecutionState.WaitingForInput:
+                    <i class="bi bi-keyboard-fill"></i>
+                    <span>@Loc["StateWaiting"]</span>
+                    break;
+                case ExecutionState.Error:
+                    <i class="bi bi-x-circle-fill"></i>
+                    <span>@Loc["StateError"]</span>
+                    break;
+                case ExecutionState.Completed:
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>@Loc["StateCompleted"]</span>
+                    break;
+                default:
+                    <i class="bi bi-check2"></i>
+                    <span>@Loc["StateIdle"]</span>
+                    break;
+            }
+        </div>
+
+        <div class="statusbar-item" title="@(Loc.CurrentLanguage == AppLanguage.Greek ? "Σφάλματα και Προειδοποιήσεις" : "Diagnostics and Problems")">
+            <i class="bi bi-exclamation-triangle"></i>
+            <span>@ProblemCount</span>
+        </div>
+
+        <div class="statusbar-item">
+            <span>@FileName</span>
+        </div>
+    </div>
+
+    <div class="statusbar-right">
+        <div class="statusbar-item">
+            <span>@Loc.Format("StatusLineCol", Line, Column)</span>
+        </div>
+
+        <div class="statusbar-item">
+            <span>Spaces: 4</span>
+        </div>
+
+        <div class="statusbar-item">
+            <span>UTF-8</span>
+        </div>
+
+        <div class="statusbar-item" style="font-weight: 600;">
+            <i class="bi bi-code-slash"></i>
+            <span>ΓΛΩΣΣΑ</span>
+        </div>
+    </div>
+</footer>
+
+@code {
+    [Parameter] public int Line { get; set; } = 1;
+    [Parameter] public int Column { get; set; } = 1;
+    [Parameter] public ExecutionState State { get; set; } = ExecutionState.Idle;
+    [Parameter] public string FileName { get; set; } = "program.glo";
+    [Parameter] public string ThemeName { get; set; } = "Dark";
+    [Parameter] public int ProblemCount { get; set; } = 0;
+
+    private string GetStatusClass()
+    {
+        return State switch
+        {
+            ExecutionState.Running or ExecutionState.WaitingForInput => "status-running",
+            ExecutionState.Error => "status-error",
+            _ => ""
+        };
+    }
+}

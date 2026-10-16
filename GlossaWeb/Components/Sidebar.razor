@@ -1,0 +1,378 @@
+@namespace GlossaWeb.Components
+@using GlossaWeb.Models
+@inject ILocalizationService Loc
+
+<aside class="ide-sidebar @(IsVisible ? "" : "collapsed")">
+    @if (ActivePanel == "explorer")
+    {
+        <div class="sidebar-header">
+            <span>@Loc["SidebarExplorer"]</span>
+            <button class="panel-action-btn" @onclick="OnCloseSidebar" title="Hide Sidebar">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <!-- Open Editors section -->
+            <div class="sidebar-section-title" @onclick="() => isEditorsSectionExpanded = !isEditorsSectionExpanded">
+                <i class="bi @(isEditorsSectionExpanded ? "bi-chevron-down" : "bi-chevron-right")"></i>
+                <span>@Loc["OpenEditors"] (@Tabs.Count)</span>
+            </div>
+            @if (isEditorsSectionExpanded)
+            {
+                @foreach (var tab in Tabs)
+                {
+                    <div class="sidebar-item @(tab.Id == ActiveTabId ? "active" : "")"
+                         @onclick="@(() => OnTabSelected.InvokeAsync(tab.Id))">
+                        <div style="display:flex; align-items:center; gap:6px; overflow:hidden;">
+                            <i class="bi bi-file-earmark-code"></i>
+                            <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">@tab.FileName</span>
+                        </div>
+                        @if (tab.IsDirty)
+                        {
+                            <span class="unsaved-dot" title="Unsaved changes"></span>
+                        }
+                    </div>
+                }
+            }
+
+            <!-- Open Folder Workspace Section -->
+            @if (OpenedFolder != null)
+            {
+                <div class="sidebar-section-title" style="margin-top: 10px;"
+                     @onclick="() => isFolderSectionExpanded = !isFolderSectionExpanded">
+                    <i class="bi @(isFolderSectionExpanded ? "bi-chevron-down" : "bi-chevron-right")"></i>
+                    <i class="bi bi-folder2-open" style="color:#e8a87c; margin-right:2px;"></i>
+                    <span>@OpenedFolder.Name</span>
+                </div>
+
+                @if (isFolderSectionExpanded)
+                {
+                    <div class="folder-tree">
+                        @foreach (var item in OpenedFolder.Items)
+                        {
+                            @RenderWorkspaceItem(item, 0)
+                        }
+                    </div>
+                }
+            }
+
+            <!-- Sample Programs section -->
+            <div class="sidebar-section-title" style="margin-top: 14px;"
+                 @onclick="() => isSamplesSectionExpanded = !isSamplesSectionExpanded">
+                <i class="bi @(isSamplesSectionExpanded ? "bi-chevron-down" : "bi-chevron-right")"></i>
+                <span>@Loc["SamplePrograms"]</span>
+            </div>
+
+            @if (isSamplesSectionExpanded)
+            {
+                @foreach (var sample in GetLocalizedSamples())
+                {
+                    <div class="sidebar-item" @onclick="@(() => OnSampleSelected.InvokeAsync((sample.Title, sample.Code)))" title="@sample.Description">
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <i class="bi bi-journal-code"></i>
+                            <span>@sample.Title</span>
+                        </div>
+                        <i class="bi bi-plus" style="color:var(--text-secondary); font-size:16px;"></i>
+                    </div>
+                }
+            }
+        </div>
+    }
+    else if (ActivePanel == "reference")
+    {
+        <div class="sidebar-header">
+            <span>@Loc["SidebarReference"]</span>
+            <button class="panel-action-btn" @onclick="OnCloseSidebar" title="Hide Sidebar">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="reference-card">
+                <div class="reference-card-header">
+                    <i class="bi bi-box"></i>
+                    <span>@Loc["RefStructure"]</span>
+                </div>
+                <pre class="reference-code">ΠΡΟΓΡΑΜΜΑ ProgramName
+ΜΕΤΑΒΛΗΤΕΣ
+  ΑΚΕΡΑΙΕΣ: a, b
+ΑΡΧΗ
+  ! statements
+ΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ</pre>
+            </div>
+
+            <div class="reference-card">
+                <div class="reference-card-header">
+                    <i class="bi bi-terminal"></i>
+                    <span>@Loc["RefIO"]</span>
+                </div>
+                <pre class="reference-code">ΓΡΑΨΕ 'Μήνυμα: ', x
+ΔΙΑΒΑΣΕ a, b</pre>
+            </div>
+
+            <div class="reference-card">
+                <div class="reference-card-header">
+                    <i class="bi bi-diagram-3"></i>
+                    <span>@Loc["RefConditional"]</span>
+                </div>
+                <pre class="reference-code">ΑΝ condition ΤΟΤΕ
+  ! statements
+ΑΛΛΙΩΣ
+  ! statements
+ΤΕΛΟΣ_ΑΝ</pre>
+            </div>
+
+            <div class="reference-card">
+                <div class="reference-card-header">
+                    <i class="bi bi-arrow-repeat"></i>
+                    <span>@Loc["RefRepetition"]</span>
+                </div>
+                <pre class="reference-code">ΟΣΟ condition ΕΠΑΝΑΛΑΒΕ
+  ! statements
+ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ
+
+ΓΙΑ i ΑΠΟ 1 ΜΕΧΡΙ 10 ΜΕ_ΒΗΜΑ 1
+  ΓΡΑΨΕ i
+ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ
+
+ΑΡΧΗ_ΕΠΑΝΑΛΗΨΗΣ
+  ΔΙΑΒΑΣΕ x
+ΜΕΧΡΙΣ_ΟΤΟΥ x > 0</pre>
+            </div>
+
+            <div class="reference-card">
+                <div class="reference-card-header">
+                    <i class="bi bi-calculator"></i>
+                    <span>@Loc["RefDataTypes"]</span>
+                </div>
+                <pre class="reference-code">ΑΚΕΡΑΙΕΣ, ΠΡΑΓΜΑΤΙΚΕΣ
+ΧΑΡΑΚΤΗΡΕΣ, ΛΟΓΙΚΕΣ
+&lt;- (assignment)
++, -, *, /, ^, DIV, MOD
+ΚΑΙ, Η, ΟΧΙ, =, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=</pre>
+            </div>
+        </div>
+    }
+    else if (ActivePanel == "settings")
+    {
+        <div class="sidebar-header">
+            <span>@Loc["SidebarSettings"]</span>
+            <button class="panel-action-btn" @onclick="OnCloseSidebar" title="Hide Sidebar">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="settings-group">
+                <label class="settings-label">@Loc["Language"]</label>
+                <select class="settings-select" value="@Loc.LanguageCode" @onchange="ChangeLanguage">
+                    <option value="en">@Loc["LanguageEn"]</option>
+                    <option value="el">@Loc["LanguageEl"]</option>
+                </select>
+            </div>
+
+            <div class="settings-group">
+                <label class="settings-label">@Loc["FontSize"] (px)</label>
+                <input type="number" class="settings-input" min="10" max="28"
+                       value="@Settings.FontSize"
+                       @onchange="UpdateFontSize" />
+            </div>
+
+            <div class="settings-group">
+                <label class="settings-label">@Loc["TabSize"]</label>
+                <select class="settings-select" value="@Settings.TabSize" @onchange="UpdateTabSize">
+                    <option value="2">2 Spaces</option>
+                    <option value="4">4 Spaces</option>
+                    <option value="8">8 Spaces</option>
+                </select>
+            </div>
+
+            <div class="settings-group">
+                <label class="settings-label">@Loc["EditorSettings"]</label>
+                <label class="settings-checkbox-row">
+                    <input type="checkbox" checked="@Settings.WordWrap" @onchange="ToggleWordWrap" />
+                    <span>@Loc["WordWrap"]</span>
+                </label>
+                <label class="settings-checkbox-row">
+                    <input type="checkbox" checked="@Settings.Minimap" @onchange="ToggleMinimap" />
+                    <span>@Loc["Minimap"]</span>
+                </label>
+            </div>
+        </div>
+    }
+    else if (ActivePanel == "about")
+    {
+        <div class="sidebar-header">
+            <span>@Loc["SidebarAbout"]</span>
+            <button class="panel-action-btn" @onclick="OnCloseSidebar" title="Hide Sidebar">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-content">
+            <div class="about-card">
+                <div class="about-card-logo">
+                    <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="64" height="64" rx="14" fill="#007ACC" />
+                        <path d="M18 46V18H32C36.4 18 39.8 19.3 42.2 21.9C44.6 24.5 45.8 28 45.8 32.4C45.8 36.8 44.6 40.3 42.2 42.8C39.8 45.3 36.4 46 32 46H18ZM25.2 40.2H31.8C34.4 40.2 36.3 39.6 37.6 38.3C38.9 37 39.5 35 39.5 32.4C39.5 29.8 38.9 27.8 37.6 26.5C36.5 25.2 34.4 24.6 31.8 24.6H25.2V40.2Z" fill="white"/>
+                    </svg>
+                </div>
+                <div class="about-card-title">@Loc["AboutHeading"]</div>
+                <div class="about-card-version">v2.0 WebAssembly PWA</div>
+                
+                <div class="about-card-desc">
+                    @Loc["AboutSubheading"]
+                </div>
+
+                <div class="about-info-table">
+                    <div class="about-info-row">
+                        <span class="label">@(Loc.CurrentLanguage == AppLanguage.Greek ? "Δημιουργός:" : "Original Author:")</span>
+                        <span class="val">Bill Chamalidis</span>
+                    </div>
+                    <div class="about-info-row">
+                        <span class="label">@(Loc.CurrentLanguage == AppLanguage.Greek ? "Αρχιτεκτονική:" : "Architecture:")</span>
+                        <span class="val">Blazor WebAssembly (.NET)</span>
+                    </div>
+                    <div class="about-info-row">
+                        <span class="label">@(Loc.CurrentLanguage == AppLanguage.Greek ? "Μηχανή:" : "Compiler Engine:")</span>
+                        <span class="val">markoutso/glo JS</span>
+                    </div>
+                    <div class="about-info-row">
+                        <span class="label">@(Loc.CurrentLanguage == AppLanguage.Greek ? "Συντάκτης:" : "Code Editor:")</span>
+                        <span class="val">Monaco Editor</span>
+                    </div>
+                    <div class="about-info-row">
+                        <span class="label">@(Loc.CurrentLanguage == AppLanguage.Greek ? "Άδεια:" : "License:")</span>
+                        <span class="val">GNU GPL v3</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 12px; font-size: 11px; color: var(--text-secondary); line-height: 1.4;">
+                    @Loc["AboutCurriculumText"]
+                </div>
+            </div>
+        </div>
+    }
+</aside>
+
+@code {
+    [Parameter] public string ActivePanel { get; set; } = "explorer";
+    [Parameter] public bool IsVisible { get; set; } = true;
+    [Parameter] public List<EditorTab> Tabs { get; set; } = new();
+    [Parameter] public string ActiveTabId { get; set; } = "";
+    [Parameter] public WorkspaceFolder? OpenedFolder { get; set; }
+    [Parameter] public EditorSettings Settings { get; set; } = new();
+
+    [Parameter] public EventCallback<string> OnTabSelected { get; set; }
+    [Parameter] public EventCallback<(string Title, string Code)> OnSampleSelected { get; set; }
+    [Parameter] public EventCallback<WorkspaceItem> OnFileItemClicked { get; set; }
+    [Parameter] public EventCallback<EditorSettings> OnSettingsChanged { get; set; }
+    [Parameter] public EventCallback OnCloseSidebar { get; set; }
+
+    private bool isEditorsSectionExpanded = true;
+    private bool isFolderSectionExpanded = true;
+    private bool isSamplesSectionExpanded = true;
+
+    private record SampleProgram(string Title, string Description, string Code);
+
+    private List<SampleProgram> GetLocalizedSamples()
+    {
+        return new List<SampleProgram>
+        {
+            new(
+                $"1. {Loc["SampleHelloWorld"]}",
+                Loc["SampleHelloWorldDesc"],
+                "ΠΡΟΓΡΑΜΜΑ Χαιρε_Κοσμε\nΑΡΧΗ\n  ΓΡΑΨΕ 'Χαίρε, Κόσμε!'\nΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ\n"
+            ),
+            new(
+                $"2. {Loc["SampleSum"]}",
+                Loc["SampleSumDesc"],
+                "ΠΡΟΓΡΑΜΜΑ Αθροισμα_Δυο\nΜΕΤΑΒΛΗΤΕΣ\n  ΑΚΕΡΑΙΕΣ: α, β, σ\nΑΡΧΗ\n  ΓΡΑΨΕ 'Δώσε τον πρώτο αριθμό:'\n  ΔΙΑΒΑΣΕ α\n  ΓΡΑΨΕ 'Δώσε τον δεύτερο αριθμό:'\n  ΔΙΑΒΑΣΕ β\n  σ <- α + β\n  ΓΡΑΨΕ 'Το άθροισμα των δύο αριθμών είναι: ', σ\nΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ\n"
+            ),
+            new(
+                $"3. {Loc["SampleMax"]}",
+                Loc["SampleMaxDesc"],
+                "ΠΡΟΓΡΑΜΜΑ Μεγιστος_Τριων\nΜΕΤΑΒΛΗΤΕΣ\n  ΑΚΕΡΑΙΕΣ: α, β, γ, μεγ\nΑΡΧΗ\n  ΓΡΑΨΕ 'Δώσε τρεις ακέραιους αριθμούς:'\n  ΔΙΑΒΑΣΕ α, β, γ\n  μεγ <- α\n  ΑΝ β > μεγ ΤΟΤΕ\n    μεγ <- β\n  ΤΕΛΟΣ_ΑΝ\n  ΑΝ γ > μεγ ΤΟΤΕ\n    μεγ <- γ\n  ΤΕΛΟΣ_ΑΝ\n  ΓΡΑΨΕ 'Ο μεγαλύτερος αριθμός είναι: ', μεγ\nΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ\n"
+            ),
+            new(
+                $"4. {Loc["SampleSort"]}",
+                Loc["SampleSortDesc"],
+                "ΠΡΟΓΡΑΜΜΑ Ταξινομηση_Φυσαλιδας\nΜΕΤΑΒΛΗΤΕΣ\n  ΑΚΕΡΑΙΕΣ: Π[5], ι, j, προσωρινη\nΑΡΧΗ\n  ΓΡΑΨΕ 'Δώσε 5 αριθμούς για τον πίνακα:'\n  ΓΙΑ ι ΑΠΟ 1 ΜΕΧΡΙ 5\n    ΔΙΑΒΑΣΕ Π[ι]\n  ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ\n\n  ΓΙΑ ι ΑΠΟ 2 ΜΕΧΡΙ 5\n    ΓΙΑ j ΑΠΟ 5 ΜΕΧΡΙ ι ΜΕ_ΒΗΜΑ -1\n      ΑΝ Π[j-1] > Π[j] ΤΟΤΕ\n        προσωρινη <- Π[j-1]\n        Π[j-1] <- Π[j]\n        Π[j] <- προσωρινη\n      ΤΕΛΟΣ_ΑΝ\n    ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ\n  ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ\n\n  ΓΡΑΨΕ 'Ταξινομημένος Πίνακας:'\n  ΓΙΑ ι ΑΠΟ 1 ΜΕΧΡΙ 5\n    ΓΡΑΨΕ Π[ι]\n  ΤΕΛΟΣ_ΕΠΑΝΑΛΗΨΗΣ\nΤΕΛΟΣ_ΠΡΟΓΡΑΜΜΑΤΟΣ\n"
+            )
+        };
+    }
+
+    private RenderFragment RenderWorkspaceItem(WorkspaceItem item, int depth) => __builder =>
+    {
+        var paddingLeft = (depth * 14 + 10) + "px";
+
+        if (item.IsDirectory)
+        {
+            <div class="folder-tree-item"
+                 style="padding-left: @paddingLeft;"
+                 @onclick="@(() => item.IsExpanded = !item.IsExpanded)">
+                <span class="folder-chevron">
+                    <i class="bi @(item.IsExpanded ? "bi-chevron-down" : "bi-chevron-right")"></i>
+                </span>
+                <i class="bi @(item.IsExpanded ? "bi-folder2-open" : "bi-folder2") folder-icon"></i>
+                <span>@item.Name</span>
+            </div>
+
+            @if (item.IsExpanded)
+            {
+                @foreach (var child in item.Children)
+                {
+                    @RenderWorkspaceItem(child, depth + 1)
+                }
+            }
+        }
+        else
+        {
+            <div class="folder-tree-item"
+                 style="padding-left: @paddingLeft;"
+                 @onclick="@(() => OnFileItemClicked.InvokeAsync(item))">
+                <span class="folder-chevron"></span>
+                <i class="bi bi-file-earmark-code" style="color:#4ec9b0; margin-right:2px;"></i>
+                <span>@item.Name</span>
+            </div>
+        }
+    };
+
+    private async Task ChangeLanguage(ChangeEventArgs e)
+    {
+        var val = e.Value?.ToString();
+        var lang = val == "el" ? AppLanguage.Greek : AppLanguage.English;
+        await Loc.SetLanguageAsync(lang);
+    }
+
+    private async Task UpdateFontSize(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out var size))
+        {
+            Settings.FontSize = Math.Clamp(size, 10, 28);
+            await OnSettingsChanged.InvokeAsync(Settings);
+        }
+    }
+
+    private async Task UpdateTabSize(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out var size))
+        {
+            Settings.TabSize = size;
+            await OnSettingsChanged.InvokeAsync(Settings);
+        }
+    }
+
+    private async Task ToggleWordWrap(ChangeEventArgs e)
+    {
+        Settings.WordWrap = (bool)(e.Value ?? false);
+        await OnSettingsChanged.InvokeAsync(Settings);
+    }
+
+    private async Task ToggleMinimap(ChangeEventArgs e)
+    {
+        Settings.Minimap = (bool)(e.Value ?? true);
+        await OnSettingsChanged.InvokeAsync(Settings);
+    }
+}

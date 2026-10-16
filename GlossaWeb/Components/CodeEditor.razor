@@ -1,0 +1,104 @@
+@namespace GlossaWeb.Components
+@using GlossaWeb.Models
+@inject ILocalizationService Loc
+
+<div class="ide-editor-area">
+    <!-- Multiple Tabs Strip -->
+    <div class="tab-strip">
+        @foreach (var tab in Tabs)
+        {
+            var isCurrentActive = tab.Id == ActiveTabId;
+            <div class="tab-item @(isCurrentActive ? "active" : "")"
+                 @onclick="@(() => OnTabSelected.InvokeAsync(tab.Id))"
+                 @ondblclick="@(() => StartRenamingTab(tab))"
+                 title="@(tab.FilePath ?? tab.FileName)">
+                
+                <i class="bi bi-file-earmark-code tab-icon"></i>
+
+                @if (tab.IsRenaming)
+                {
+                    <input class="tab-rename-input"
+                           value="@renamingValue"
+                           @oninput="@((e) => renamingValue = e.Value?.ToString() ?? "")"
+                           @onkeydown="@((e) => HandleRenameKeyDown(e, tab))"
+                           @onblur="@(() => CommitRenameTab(tab))"
+                           @onclick:stopPropagation="true"
+                           autofocus />
+                }
+                else
+                {
+                    <span class="tab-title-text">@tab.FileName</span>
+                }
+
+                @if (tab.IsDirty)
+                {
+                    <span class="unsaved-dot" title="@(Loc.CurrentLanguage == AppLanguage.Greek ? "Μη αποθηκευμένες αλλαγές" : "Unsaved changes")"></span>
+                }
+
+                <button class="tab-close-btn"
+                        @onclick="@(() => OnTabClosed.InvokeAsync(tab))"
+                        @onclick:stopPropagation="true"
+                        title="@Loc["CloseTabTooltip"]">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+        }
+
+        <!-- Add New Tab Button -->
+        <button class="tab-add-btn" @onclick="OnNewTab" title="@Loc["NewTabTooltip"]">
+            <i class="bi bi-plus-lg"></i>
+        </button>
+    </div>
+
+    <!-- Monaco Editor Container -->
+    <div class="monaco-wrapper">
+        <div id="@ContainerId" style="width: 100%; height: 100%;"></div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string ContainerId { get; set; } = "monaco-editor-container";
+    [Parameter] public List<EditorTab> Tabs { get; set; } = new();
+    [Parameter] public string ActiveTabId { get; set; } = "";
+    [Parameter] public EventCallback<string> OnTabSelected { get; set; }
+    [Parameter] public EventCallback<EditorTab> OnTabClosed { get; set; }
+    [Parameter] public EventCallback OnNewTab { get; set; }
+    [Parameter] public EventCallback<(EditorTab Tab, string NewName)> OnTabRenamed { get; set; }
+
+    private string renamingValue = "";
+
+    private void StartRenamingTab(EditorTab tab)
+    {
+        foreach (var t in Tabs) t.IsRenaming = false;
+        tab.IsRenaming = true;
+        renamingValue = tab.FileName;
+    }
+
+    private async Task CommitRenameTab(EditorTab tab)
+    {
+        if (!tab.IsRenaming) return;
+        tab.IsRenaming = false;
+
+        var trimmed = renamingValue.Trim();
+        if (!string.IsNullOrEmpty(trimmed) && trimmed != tab.FileName)
+        {
+            if (!trimmed.EndsWith(".glo") && !trimmed.EndsWith(".glossa") && !trimmed.Contains("."))
+            {
+                trimmed += ".glo";
+            }
+            await OnTabRenamed.InvokeAsync((tab, trimmed));
+        }
+    }
+
+    private async Task HandleRenameKeyDown(KeyboardEventArgs e, EditorTab tab)
+    {
+        if (e.Key == "Enter")
+        {
+            await CommitRenameTab(tab);
+        }
+        else if (e.Key == "Escape")
+        {
+            tab.IsRenaming = false;
+        }
+    }
+}

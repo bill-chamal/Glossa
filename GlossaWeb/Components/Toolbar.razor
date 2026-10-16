@@ -1,0 +1,130 @@
+@namespace GlossaWeb.Components
+@inject ILocalizationService Loc
+
+<header class="ide-titlebar">
+    <div class="toolbar-brand">
+        <i class="bi bi-cpu-fill"></i>
+        <span>@Loc["AppTitle"]</span>
+        <span class="toolbar-brand-tag">@Loc["Tag"]</span>
+    </div>
+
+    <div class="toolbar-groups-container">
+        <!-- File Operations -->
+        <div class="toolbar-group">
+            <button class="toolbar-btn" @onclick="OnNew" title="@Loc["NewTooltip"]">
+                <i class="bi bi-file-earmark-plus"></i>
+                <span>@Loc["New"]</span>
+            </button>
+            <button class="toolbar-btn" @onclick="OnOpen" title="@Loc["OpenFileTooltip"]">
+                <i class="bi bi-folder2-open"></i>
+                <span>@Loc["OpenFile"]</span>
+            </button>
+            <button class="toolbar-btn" @onclick="OnOpenFolder" title="@Loc["OpenFolderTooltip"]">
+                <i class="bi bi-folder-plus"></i>
+                <span>@Loc["OpenFolder"]</span>
+            </button>
+            <button class="toolbar-btn @(IsDirty ? "btn-dirty" : "")" @onclick="OnSave" title="@Loc["SaveTooltip"]">
+                <i class="bi bi-floppy"></i>
+                <span>@Loc["Save"]</span>
+            </button>
+            <button class="toolbar-btn" @onclick="OnSaveAs" title="@Loc["SaveAsTooltip"]">
+                <i class="bi bi-floppy2"></i>
+                <span>@Loc["SaveAs"]</span>
+            </button>
+        </div>
+
+        <div class="toolbar-separator"></div>
+
+        <!-- Edit Operations -->
+        <div class="toolbar-group">
+            <button class="toolbar-btn" @onclick="OnUndo" title="@Loc["UndoTooltip"]">
+                <i class="bi bi-arrow-counterclockwise"></i>
+            </button>
+            <button class="toolbar-btn" @onclick="OnRedo" title="@Loc["RedoTooltip"]">
+                <i class="bi bi-arrow-clockwise"></i>
+            </button>
+            <button class="toolbar-btn" @onclick="OnCut" title="@Loc["CutTooltip"]">
+                <i class="bi bi-scissors"></i>
+            </button>
+            <button class="toolbar-btn" @onclick="OnCopy" title="@Loc["CopyTooltip"]">
+                <i class="bi bi-copy"></i>
+            </button>
+            <button class="toolbar-btn" @onclick="OnPaste" title="@Loc["PasteTooltip"]">
+                <i class="bi bi-clipboard"></i>
+            </button>
+            <button class="toolbar-btn" @onclick="OnFormat" title="@Loc["FormatTooltip"]">
+                <i class="bi bi-text-indent-left"></i>
+                <span>@Loc["Format"]</span>
+            </button>
+        </div>
+
+        <div class="toolbar-separator"></div>
+
+        <!-- Execution Operations -->
+        <div class="toolbar-group">
+            @if (!IsRunning)
+            {
+                <button class="toolbar-btn btn-run" @onclick="OnRun" title="@Loc["RunTooltip"]">
+                    <i class="bi bi-play-fill"></i>
+                    <span>@Loc["Run"] (F5)</span>
+                </button>
+            }
+            else
+            {
+                <button class="toolbar-btn btn-stop" @onclick="OnStop" title="@Loc["StopTooltip"]">
+                    <i class="bi bi-stop-fill"></i>
+                    <span>@Loc["Stop"]</span>
+                </button>
+            }
+
+            <button class="toolbar-btn" @onclick="OnClearConsole" title="@Loc["ClearConsoleTooltip"]">
+                <i class="bi bi-trash"></i>
+                <span>@Loc["ClearConsole"]</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Right Controls: Language Switch, Theme Toggle & About -->
+    <div class="toolbar-right">
+        <button class="toolbar-btn" @onclick="ToggleLanguageAsync" title="@Loc["LangToggle"]">
+            <i class="bi bi-translate"></i>
+            <span>@(Loc.CurrentLanguage == AppLanguage.English ? "ΕΛ" : "EN")</span>
+        </button>
+        <button class="toolbar-btn" @onclick="OnShowAbout" title="@Loc["AboutTooltip"]">
+            <i class="bi bi-info-circle"></i>
+        </button>
+        <button class="toolbar-btn" @onclick="OnToggleTheme" title="@(ThemeIcon == "bi-sun" ? Loc["ThemeToggleLight"] : Loc["ThemeToggleDark"])">
+            <i class="bi @ThemeIcon"></i>
+        </button>
+    </div>
+</header>
+
+@code {
+    [Parameter] public EventCallback OnNew { get; set; }
+    [Parameter] public EventCallback OnOpen { get; set; }
+    [Parameter] public EventCallback OnOpenFolder { get; set; }
+    [Parameter] public EventCallback OnSave { get; set; }
+    [Parameter] public EventCallback OnSaveAs { get; set; }
+
+    [Parameter] public EventCallback OnUndo { get; set; }
+    [Parameter] public EventCallback OnRedo { get; set; }
+    [Parameter] public EventCallback OnCut { get; set; }
+    [Parameter] public EventCallback OnCopy { get; set; }
+    [Parameter] public EventCallback OnPaste { get; set; }
+    [Parameter] public EventCallback OnFormat { get; set; }
+
+    [Parameter] public EventCallback OnRun { get; set; }
+    [Parameter] public EventCallback OnStop { get; set; }
+    [Parameter] public EventCallback OnClearConsole { get; set; }
+    [Parameter] public EventCallback OnToggleTheme { get; set; }
+    [Parameter] public EventCallback OnShowAbout { get; set; }
+
+    [Parameter] public bool IsRunning { get; set; }
+    [Parameter] public bool IsDirty { get; set; }
+    [Parameter] public string ThemeIcon { get; set; } = "bi-moon-stars";
+
+    private async Task ToggleLanguageAsync()
+    {
+        await Loc.ToggleLanguageAsync();
+    }
+}

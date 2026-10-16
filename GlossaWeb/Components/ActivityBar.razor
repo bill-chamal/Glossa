@@ -1,0 +1,55 @@
+@namespace GlossaWeb.Components
+@inject ILocalizationService Loc
+
+<aside class="ide-activitybar">
+    <div class="activity-group">
+        <button class="activity-btn @(IsSidebarVisible && ActivePanel == "explorer" ? "active" : "")"
+                @onclick="@(() => TogglePanel("explorer"))"
+                title="@Loc["Explorer"] (Ctrl+Shift+E)">
+            <i class="bi bi-files"></i>
+        </button>
+        <button class="activity-btn @(IsSidebarVisible && ActivePanel == "reference" ? "active" : "")"
+                @onclick="@(() => TogglePanel("reference"))"
+                title="@Loc["Reference"]">
+            <i class="bi bi-book"></i>
+        </button>
+    </div>
+
+    <div class="activity-group">
+        <button class="activity-btn @(IsSidebarVisible && ActivePanel == "about" ? "active" : "")"
+                @onclick="@(() => TogglePanel("about"))"
+                title="@Loc["About"]">
+            <i class="bi bi-info-circle"></i>
+        </button>
+        <button class="activity-btn @(IsSidebarVisible && ActivePanel == "settings" ? "active" : "")"
+                @onclick="@(() => TogglePanel("settings"))"
+                title="@Loc["Settings"]">
+            <i class="bi bi-gear"></i>
+        </button>
+    </div>
+</aside>
+
+@code {
+    [Parameter] public string ActivePanel { get; set; } = "explorer";
+    [Parameter] public bool IsSidebarVisible { get; set; } = true;
+    [Parameter] public EventCallback<string> OnPanelSelected { get; set; }
+
+    private async Task TogglePanel(string panelName)
+    {
+        if (!IsSidebarVisible)
+        {
+            // If sidebar is currently closed, clicking any icon opens it
+            await OnPanelSelected.InvokeAsync(panelName);
+        }
+        else if (ActivePanel == panelName)
+        {
+            // If already open and active on this panel, close it
+            await OnPanelSelected.InvokeAsync("");
+        }
+        else
+        {
+            // If open on a different panel, switch to this panel
+            await OnPanelSelected.InvokeAsync(panelName);
+        }
+    }
+}
